@@ -25,11 +25,15 @@ def create_app(test_config=None):
         pass
 
     # a simple page that says hello
-    @app.route('/jaj')
-    def jaj():
+    @app.route('/pagina')
+    def pagina():
         return 'Hello, World!'
 
     from . import db
     db.init_app(app)
+
+    from . import canciones
+    app.register_blueprint(canciones.bp)
+    app.add_url_rule('/', endpoint='index')
 
     return app
