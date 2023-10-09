@@ -1,6 +1,6 @@
 import os
 
-from flask import Flask
+from flask import Flask, render_template
 
 
 def create_app(test_config=None):
@@ -25,9 +25,9 @@ def create_app(test_config=None):
         pass
 
     # a simple page that says hello
-    @app.route('/pagina')
+    @app.route('/')
     def pagina():
-        return 'Hello, World!'
+        return render_template("base.html")
 
     from . import db
     db.init_app(app)
@@ -35,5 +35,13 @@ def create_app(test_config=None):
     from . import canciones
     app.register_blueprint(canciones.bp)
     app.add_url_rule('/', endpoint='index')
+
+    from . import artistas
+    app.register_blueprint(artistas.bp)
+
+    from . import albumes
+    app.register_blueprint(albumes.bp)
+
+
 
     return app

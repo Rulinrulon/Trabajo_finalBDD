@@ -5,9 +5,9 @@ from werkzeug.exceptions import abort
 
 from flaskr.db import get_db
 
-bp = Blueprint('blog', __name__)
+bp = Blueprint('Canción', __name__)
 
-@bp.route('/')
+@bp.route('/canciones')
 def index():
     db = get_db()
     canciones = db.execute(
@@ -17,4 +17,4 @@ def index():
         JOIN genres g ON g.GenreId = t.GenreId
         ORDER BY t.name DESC"""
     ).fetchall()
-    return render_template('blog/index.html', canciones=canciones)
+    return render_template('Canción/index.html', canciones=canciones)
