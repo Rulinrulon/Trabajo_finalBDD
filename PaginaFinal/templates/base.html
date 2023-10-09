@@ -1,0 +1,22 @@
+<link rel="stylesheet" href="{{url_for('static', filename='style.css')}}" />
+{% block header %}
+<header>
+  <h1>{% block title %}Música{% endblock %}</h1>
+</header>
+{% endblock %} {% block content %}
+<article class="contenido">
+  <body>
+    <div>
+      <h3>
+        <a class="links" href="{{ url_for('Canción.index') }}">Canciones</a>
+      </h3>
+      <h3>
+        <a class="links" href="{{ url_for('Album.index') }}">Albumes</a>
+      </h3>
+      <h3>
+        <a class="links" href="{{ url_for('Artista.index') }}">Artistas</a>
+      </h3>
+    </div>
+  </body>
+</article>
+{% endblock %}
