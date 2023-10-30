@@ -8,13 +8,13 @@ from flaskr.db import get_db
 bp = Blueprint('Artista', __name__)
 
 @bp.route('/artistas')
-def artistas():
+def index():
     db = get_db()
-    artista = db.execute(
+    artistas = db.execute(
         """SELECT ar.name AS Nombre, count(al.AlbumId) AS Albums
          FROM artists ar JOIN albums al ON ar.ArtistId = al.ArtistId
 		 GROUP BY Nombre
          ORDER BY Nombre ASC"""   
     ).fetchall()
 
-    return render_template('Artista/index.html', artista=artista)
+    return render_template('Artista/index.html', artistas=artistas)

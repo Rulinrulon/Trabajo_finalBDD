@@ -24,7 +24,6 @@ def create_app(test_config=None):
     except OSError:
         pass
 
-    # a simple page that says hello
     @app.route('/')
     def pagina():
         return render_template("base.html")
@@ -34,14 +33,14 @@ def create_app(test_config=None):
 
     from . import canciones
     app.register_blueprint(canciones.bp)
-    app.add_url_rule('/', endpoint='index')
+    app.add_url_rule('/', endpoint='Canción.index')
 
     from . import artistas
     app.register_blueprint(artistas.bp)
+    app.add_url_rule('/', endpoint='Artista.index')
 
     from . import albumes
     app.register_blueprint(albumes.bp)
-
-
+    app.add_url_rule('/', endpoint='Album.index')
 
     return app

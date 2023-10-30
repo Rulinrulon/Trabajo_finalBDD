@@ -8,7 +8,7 @@ from flaskr.db import get_db
 bp = Blueprint('Album', __name__)
 
 @bp.route('/albumes')
-def albumes():
+def index():
     db = get_db()
     album = db.execute(
         """SELECT title AS Album, ar.name AS Artista, sum(Milliseconds) AS Duración
