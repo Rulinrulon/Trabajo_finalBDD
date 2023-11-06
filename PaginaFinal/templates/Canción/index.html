@@ -9,8 +9,15 @@
   <body>
     <div>
       <h1>{{ Cancion['Cancion'] }}</h1>
-      <div class="sobre">Artista: {{ Cancion['Artista'] }}</div>
-      <div class="sobre">Album: {{ Cancion['Album']}}</div>
+      <div class="sobre">
+        Artista:
+        <a
+          class="links"
+          href="{{ url_for('Artista.detalle', id=Cancion['ArtistId']) }}"
+          >{{Cancion['Artista'] }}</a
+        >
+      </div>
+      <div class="sobre">Album:{{ Cancion['Album']}}</div>
       <div class="sobre">Género: {{ Cancion['Genero']}}</div>
     </div>
   </body>

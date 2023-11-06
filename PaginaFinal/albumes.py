@@ -5,9 +5,9 @@ from werkzeug.exceptions import abort
 
 from flaskr.db import get_db
 
-bp = Blueprint('Album', __name__)
+bp = Blueprint('Album', __name__, url_prefix="/albumes")
 
-@bp.route('/albumes')
+@bp.route('/')
 def index():
     db = get_db()
     album = db.execute(

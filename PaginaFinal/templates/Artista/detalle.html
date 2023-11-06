@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+<link rel="stylesheet" href="{{url_for('static', filename='style.css')}}" />
+{% block header %}
+<header>
+  <h1>{% block title %}{{artista['Nombre']}}{% endblock %}</h1>
+</header>
+{% endblock %} {% block content %} {% for albumes in album %}
+    <article class="albumes">
+      <div>
+        <h1>Albumes</h1>
+        <div class="sobre">Album: {{ album['Album'] }}</div>
+        <div class="sobre">
+          Duración: {{ album['Duración'] }}
+        </div>
+      </div>
+    </article>
+  </body>
+{% endfor %} {% endblock %}
