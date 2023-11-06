@@ -5,11 +5,11 @@
   <h1>{% block title %}Artistas{% endblock %}</h1>
 </header>
 {% endblock %} {% block content %} {% for Artista in artistas %}
-<article class="artistas">
+<article>
   <body>
     <div>
       <h1>{{ Artista['Nombre'] }}</h1>
-      <div class="sobre">Albumes: {{ Artista['Albums'] }}</div>
+      <div>Albumes: {{ Artista['Albums'] }}</div>
     </div>
   </body>
 </article>

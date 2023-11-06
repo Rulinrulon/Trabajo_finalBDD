@@ -5,20 +5,29 @@
   <h1>{% block title %}Canciones{% endblock %}</h1>
 </header>
 {% endblock %} {% block content %} {% for Cancion in canciones %}
-<article class="canciones">
+<article>
   <body>
     <div>
       <h1>{{ Cancion['Cancion'] }}</h1>
-      <div class="sobre">
+      <div>
         Artista:
         <a
           class="links"
           href="{{ url_for('Artista.detalle', id=Cancion['ArtistId']) }}"
-          >{{Cancion['Artista'] }}</a
+        >
+          {{Cancion['Artista'] }}</a
         >
       </div>
-      <div class="sobre">Album:{{ Cancion['Album']}}</div>
-      <div class="sobre">Género: {{ Cancion['Genero']}}</div>
+      <div>
+        Album:
+        <a
+          class="links"
+          href="{{ url_for('Album.detalle', id=Cancion['AlbumId']) }}"
+        >
+          {{ Cancion['Album']}}</a
+        >
+      </div>
+      <div>Género: {{ Cancion['Genero']}}</div>
     </div>
   </body>
 </article>

@@ -2,16 +2,20 @@
 <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}" />
 {% block header %}
 <header>
-  <h1>{% block title %}Albumes{% endblock %}</h1>
+  <h1>{% block title %}{{canciones['Album']}}{% endblock %}</h1>
+  </br >
 </header>
 {% endblock %} {% block content %}
-<article class="albumes">
-  <body>
-    <div>
-      <h1>{{ albumes['Album'] }}</h1>
-      <div class="sobre">Artista: {{ albumes['Artista'] }}</div>
-      <div class="sobre">Duración: {{ albumes['Duración'] }} milisegundos</div>
-    </div>
-  </body>
-</article>
+<body>
+  <div>
+    <h1>Canciones</h1>
+    {% for cancion in canciones %}
+    <ul>
+      <li>Canción: {{ cancion['Cancion'] }}</li>
+      <li>Duración: {{ cancion['Duracion']}}</li>
+    </ul>
+    <br />
+    {% endfor %}
+  </div>
+</body>
 {% endblock %}

@@ -4,15 +4,19 @@
 <header>
   <h1>{% block title %}{{artista['Nombre']}}{% endblock %}</h1>
 </header>
-{% endblock %} {% block content %} {% for albumes in album %}
-    <article class="albumes">
-      <div>
-        <h1>Albumes</h1>
-        <div class="sobre">Album: {{ album['Album'] }}</div>
-        <div class="sobre">
-          Duración: {{ album['Duración'] }}
-        </div>
-      </div>
-    </article>
-  </body>
-{% endfor %} {% endblock %}
+{% endblock %} {% block content %}
+<body>
+  <h1>Albums</h1>
+  <div>
+    {% for album in albums %}
+    <ul>
+      <li>Album: {{ album['Album'] }}</li>
+      <li>Duración: {{ album['Duración'] }}</li>
+      <li>Género: {{ album['Genero']}}</li>
+      <li>Canciones: {{ album['Cantidad']}}</li>
+    </ul>
+    <br />
+    {% endfor %}
+  </div>
+</body>
+{% endblock %}

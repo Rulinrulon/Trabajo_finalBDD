@@ -23,22 +23,21 @@ def index():
 def detalle(id):
     db = get_db()
     artista = db.execute(
-        """SELECT ar.name AS Nombre, title AS Album, sum(milliseconds), g.name AS Genero
-         FROM artists ar JOIN albums a ON ar.ArtistId = a.ArtistId
-         JOIN tracks t ON t.AlbumId = a.AlbumId
-         JOIN genres g ON t.GenreId = g.GenreId
-		 WHERE ar.ArtistId = ?
-         ORDER BY Nombre ASC"""   ,
-         (id,)
+        """SELECT name AS Nombre, ArtistId
+            FROM artists
+		    WHERE ArtistId = ?"""   ,
+        (id,)
     ).fetchone()
 
-    album = db.execute(
-        """SELECT title AS Album, ar.name AS Artista, sum(Milliseconds) AS Duración
-        FROM albums a 
-        JOIN artists ar ON ar.ArtistId = a.ArtistId
-        JOIN tracks t ON t.AlbumId = a.AlbumId
-        GROUP BY Album
-        ORDER BY Artista ASC"""   
+    albums = db.execute(
+        """SELECT title AS Album, sum(Milliseconds) AS Duración, g.name AS Genero, count(t.TrackID) AS Cantidad
+            FROM albums a JOIN artists ar ON ar.ArtistId = a.ArtistId
+            JOIN tracks t ON t.AlbumId = a.AlbumId
+            JOIN genres g ON t.GenreId = g.GenreId
+            WHERE ar.ArtistId = ?
+            GROUP BY Album
+            ORDER BY Album ASC"""  ,
+        (id,)
     ).fetchall()
 
-    return render_template('Artista/detalle.html', artista=artista, album=album)
+    return render_template('Artista/detalle.html', artista=artista, albums=albums)

@@ -11,12 +11,24 @@ bp = Blueprint('Album', __name__, url_prefix="/albumes")
 def index():
     db = get_db()
     album = db.execute(
-        """SELECT title AS Album, ar.name AS Artista, sum(Milliseconds) AS Duración
+        """SELECT title AS Album, ar.name AS Artista
         FROM albums a 
         JOIN artists ar ON ar.ArtistId = a.ArtistId
-        JOIN tracks t ON t.AlbumId = a.AlbumId
         GROUP BY Album
         ORDER BY Artista ASC"""   
     ).fetchall()
 
     return render_template('Album/index.html', album=album)
+
+@bp.route('/<int:id>')
+def detalle(id):
+    db = get_db()
+    canciones = db.execute(
+        """SELECT t.name AS Cancion, Milliseconds AS Duracion, title AS Album
+            FROM tracks t JOIN albums a ON t.AlbumId = a.AlbumId
+            WHERE a.AlbumId = ?
+            ORDER BY Cancion ASC"""  ,
+        (id,)
+    ).fetchall()
+
+    return render_template('Album/detalle.html', canciones=canciones)
