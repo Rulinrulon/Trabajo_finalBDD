@@ -9,7 +9,13 @@
   <body>
     <div>
       <h1>{{ Artista['Nombre'] }}</h1>
-      <div>Albumes: {{ Artista['Albums'] }}</div>
+      <div>
+        <a
+          class="links"
+          href="{{ url_for('Artista.detalle', id=Artista['ArtistId']) }}"
+          >Albumes</a
+        >: {{ Artista['Albums'] }}
+      </div>
     </div>
   </body>
 </article>

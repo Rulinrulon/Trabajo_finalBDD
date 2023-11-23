@@ -7,8 +7,21 @@
 {% endblock %} {% block content %} {% for albumes in album %}
 <body>
   <div>
-    <h1>{{ albumes['Album'] }}</h1>
-    <div>Artista: {{ albumes['Artista'] }}</div>
+    <h1>
+      <a
+        class="links"
+        href="{{ url_for('Album.detalle', id=albumes['AlbumId']) }}"
+        >{{ albumes['Album'] }}</a
+      >
+    </h1>
+    <div>
+      Artista:
+      <a
+        class="links"
+        href="{{ url_for('Artista.detalle', id=albumes['ArtistId']) }}"
+        >{{ albumes['Artista'] }}</a
+      >
+    </div>
   </div>
 </body>
 {% endfor %} {% endblock %}

@@ -11,7 +11,7 @@ bp = Blueprint('Artista', __name__, url_prefix="/artistas")
 def index():
     db = get_db()
     artistas = db.execute(
-        """SELECT ar.name AS Nombre, count(al.AlbumId) AS Albums
+        """SELECT ar.name AS Nombre, count(al.AlbumId) AS Albums, ar.ArtistId
          FROM artists ar JOIN albums al ON ar.ArtistId = al.ArtistId
 		 GROUP BY Nombre
          ORDER BY Nombre ASC"""   
